@@ -19,16 +19,22 @@ cyan_echo_eval() {
 
 # variables
 TARGET_DIR="./tmp"
-EXCLUDE_PATTERNS=("scripts/copy-repositoryfiles-to-dir.sh")
+EXCLUDE_PATTERNS=(
+  scripts/copy-repositoryfiles-to-dir.sh
+  README.md
+)
 FD_EXCLUDE_PATTERN=".git"
 
 usage() {
   echo "copy-repositoryfiles-to-dir [-h] [-t --target-dir TARGET_DIR] [-e --exclude-patterns EXCLUDE_PATTERNS]"
+  echo ""
   echo "copy all targeted files in the .repositoryfiles to target directory"
+  echo ""
   echo "  -h | --help: display this help and exit"
   echo "  --sudo-symlink-to-bin: create symbolic links to /usr/local/bin/repositoryfiles"
   echo "  -t | --target-dir=\"TARGET_DIR\": target directory (default: \"./tmp\""
-  echo "  -e | --exclude-patterns: exclude patterns (default: [\"scripts/copy-repositoryfiles-to-dir.sh\"])"
+  echo "  -e | --exclude-patterns: exclude patterns"
+  echo "  (default: [\"scripts/copy-repositoryfiles-to-dir.sh\", \"README.md\"])"
 }
 
 # parse arguments

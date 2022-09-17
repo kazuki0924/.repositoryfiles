@@ -1,0 +1,11 @@
+{
+  "indent": 2,
+  "in-place": true,
+  "comments": true,
+  "trailing-commas": true,
+  "duplicate-keys": false,
+  "log-files": true,
+  "compact": true,
+  "continue": true,
+  "patterns": ["**/*.json", "!**/node_modules"]
+}

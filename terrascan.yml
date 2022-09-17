@@ -1,0 +1,4 @@
+rules:
+  skip-rules:
+    - AC_DOCKER_0002
+    - AC_DOCKER_0041

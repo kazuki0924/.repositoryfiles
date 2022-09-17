@@ -1,0 +1,5 @@
+directory: ops
+quiet: true
+compact: true
+evaluate-variables: true
+skip-check: CKV_DOCKER_2,CKV_OPENAPI_4,CKV_OPENAPI_5

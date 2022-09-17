@@ -1,0 +1,20 @@
+name: "Pull Request"
+on:
+  pull_request_target:
+    types: [opened, reopened]
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  slap-wip-label-on-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+  assign-author:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: toshimaru/auto-author-assign@v1.6.0
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"

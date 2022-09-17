@@ -1,0 +1,163 @@
+fail_fast: false
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: check-xml
+      - id: destroyed-symlinks
+      - id: detect-aws-credentials
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+      # only allow commits to branch names starting with 'fix/' or 'feat/' followed by alphanumeric characters or '-'
+      - id: no-commit-to-branch
+        args: [--pattern, '^(?!((fix|feat)\/[a-zA-Z0-9\-]+)$).*']
+  - repo: https://github.com/tekwizely/pre-commit-golang
+    rev: v1.0.0-beta.5
+    hooks:
+      - id: golangci-lint-mod
+        args: [--allow-parallel-runners, --fast, --fix]
+      - id: go-build-repo-mod
+      - id: go-mod-tidy-repo
+      - id: go-vet-mod
+  - repo: local
+    hooks:
+      - id: sqlfluff
+        name: sqlfluff
+        entry: sqlfluff
+        pass_filenames: true
+        args: [fix]
+        language: system
+        types: [sql]
+        stages: [commit, merge-commit, push, manual]
+      - id: editorconfig-checker
+        name: editorconfig-checker
+        entry: editorconfig-checker
+        language: system
+        stages: [commit, merge-commit, push, manual]
+      - id: dotenv-linter
+        name: dotenv-linter
+        entry: dotenv-linter
+        args: [--skip, UnorderedKey]
+        pass_filenames: true
+        language: system
+        types: [file]
+        files: .env
+        stages: [commit, merge-commit, push, manual]
+      - id: prettier
+        name: prettier
+        entry: prettier
+        args: [--write]
+        pass_filenames: true
+        language: system
+        types: [file]
+        files: \.(ts|js|json|yaml|yml|md)$
+        stages: [commit, merge-commit, push, manual]
+      - id: markdownlint
+        name: markdownlint
+        entry: markdownlint
+        args: [--fix]
+        pass_filenames: true
+        language: system
+        types: [markdown]
+        stages: [commit, merge-commit, push, manual]
+      - id: shfmt
+        name: shfmt
+        entry: shfmt
+        pass_filenames: true
+        args: [-i, "2", -bn, -ci, -sr, -w, -l, -d]
+        language: system
+        types: [shell]
+        stages: [commit, merge-commit, push, manual]
+      - id: shellcheck
+        name: shellcheck
+        entry: shellcheck
+        pass_filenames: true
+        args: [--external-sources, --check-sourced]
+        language: system
+        types: [shell]
+        stages: [commit, merge-commit, push, manual]
+      - id: checkmake
+        name: checkmake
+        entry: checkmake
+        pass_filenames: true
+        language: system
+        types: [makefile]
+        stages: [commit, merge-commit, push, manual]
+      - id: spectral
+        name: spectral
+        entry: spectral
+        pass_filenames: true
+        args: [lint]
+        language: system
+        files: openapi/.*.(yaml|yml|json)
+        stages: [commit, merge-commit, push, manual]
+      - id: hadolint
+        name: hadolint
+        entry: hadolint
+        pass_filenames: true
+        language: system
+        types: [dockerfile]
+        stages: [commit, merge-commit, push, manual]
+      - id: checkov
+        name: checkov
+        entry: checkov
+        language: system
+        pass_filenames: false
+        types: [terraform]
+        stages: [commit, merge-commit, push, manual]
+      - id: gitleaks
+        name: gitleaks
+        entry: gitleaks
+        args: [detect]
+        language: system
+        stages: [commit, merge-commit, push, manual]
+      - id: tflint
+        name: tflint
+        entry: tflint
+        pass_filenames: true
+        language: system
+        types: [terraform]
+        stages: [commit, merge-commit, push, manual]
+      - id: terraform-fmt
+        name: terraform-fmt
+        entry: terraform
+        args: [fmt, -check=true, -diff]
+        pass_filenames: true
+        language: system
+        types: [terraform]
+        stages: [commit, merge-commit, push, manual]
+      - id: gci
+        name: gci
+        entry: gci
+        args: [write, --skip-generated, -s, "standard,default"]
+        pass_filenames: true
+        language: system
+        types: [go]
+        stages: [commit, merge-commit, push, manual]
+      - id: gofumpt
+        name: gofumpt
+        entry: gofumpt
+        args: [-w, -extra]
+        pass_filenames: true
+        language: system
+        types: [go]
+        stages: [commit, merge-commit, push, manual]
+      - id: golines
+        name: golines
+        entry: golines
+        args: [-w, -m, "128", -t, "2", --reformat-tags]
+        pass_filenames: true
+        language: system
+        types: [go]
+        stages: [commit, merge-commit, push, manual]
