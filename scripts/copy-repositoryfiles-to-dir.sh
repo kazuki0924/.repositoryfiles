@@ -17,6 +17,12 @@ cyan_echo_eval() {
   eval "${CMD}"
 }
 
+red_echo_eval() {
+  local CMD="${1-""}"
+  red_echo "${CMD}"
+  eval "${CMD}"
+}
+
 # variables
 TARGET_DIR="./tmp"
 EXCLUDE_PATTERNS=(
@@ -102,7 +108,14 @@ for FILE in "${REPOSITORY_FILES[@]}"; do
   # if the file exists, append to it and if not, copy it
   # if the directory does not exist, create it
   if [[ -f "${TARGET_DIR}/${FILE}" ]]; then
-    cyan_echo_eval "cat ${FILE} >> ${TARGET_DIR}/${FILE}"
+    read -rp "file exists. Append to ${TARGET_DIR}/${FILE}? [y/N]"$'\n> ' UserInput
+    if [[ "${UserInput}" == "y" ]]; then
+      red_echo_eval "cat ${FILE} >> ${TARGET_DIR}/${FILE}"
+    fi
+    read -rp "overwrite ${TARGET_DIR}/${FILE}? [y/N]"$'\n> ' UserInput
+    if [[ "${UserInput}" == "y" ]]; then
+      red_echo_eval "cat ${FILE} > ${TARGET_DIR}/${FILE}"
+    fi
   else
     cyan_echo_eval "mkdir -p \"$(dirname "${TARGET_DIR}/${FILE}")\""
     cyan_echo_eval "cp ${FILE} ${TARGET_DIR}/${FILE}"
