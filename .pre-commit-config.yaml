@@ -61,7 +61,7 @@ repos:
         pass_filenames: true
         language: system
         types: [file]
-        files: \.(ts|js|json|yaml|yml|md)$
+        files: \.(ts|js|json)$
         stages: [commit, merge-commit, push, manual]
       - id: markdownlint
         name: markdownlint
@@ -132,32 +132,8 @@ repos:
       - id: terraform-fmt
         name: terraform-fmt
         entry: terraform
-        args: [fmt, -check=true, -diff]
+        args: [fmt, -diff]
         pass_filenames: true
         language: system
         types: [terraform]
-        stages: [commit, merge-commit, push, manual]
-      - id: gci
-        name: gci
-        entry: gci
-        args: [write, --skip-generated, -s, "standard,default"]
-        pass_filenames: true
-        language: system
-        types: [go]
-        stages: [commit, merge-commit, push, manual]
-      - id: gofumpt
-        name: gofumpt
-        entry: gofumpt
-        args: [-w, -extra]
-        pass_filenames: true
-        language: system
-        types: [go]
-        stages: [commit, merge-commit, push, manual]
-      - id: golines
-        name: golines
-        entry: golines
-        args: [-w, -m, "128", -t, "2", --reformat-tags]
-        pass_filenames: true
-        language: system
-        types: [go]
         stages: [commit, merge-commit, push, manual]
