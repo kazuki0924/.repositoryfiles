@@ -119,7 +119,8 @@ if [[ "${TARGET_DIR}" == "." ]]; then
 fi
 
 # find files
-cd "${SOURCE_DIR}"
+cyan_echo "cd ${SOURCE_DIR}"
+cyan_echo "git pull origin main"
 mapfile -t REPOSITORY_FILES < <(fd --hidden --type file --strip-cwd-prefix --exclude "${FD_EXCLUDE_PATTERN}" .)
 
 # check if the directory exists
