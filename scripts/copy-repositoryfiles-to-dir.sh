@@ -24,6 +24,7 @@ red_echo_eval() {
 }
 
 # variables
+SOURCE_DIR="${HOME}/.repositoryfiles"
 TARGET_DIR="./tmp"
 EXCLUDE_PATTERNS=(
   scripts/copy-repositoryfiles-to-dir.sh
@@ -38,7 +39,8 @@ usage() {
   echo ""
   echo "  -h | --help: display this help and exit"
   echo "  --sudo-symlink-to-bin: create symbolic links to /usr/local/bin/repositoryfiles"
-  echo "  -t | --target-dir=\"TARGET_DIR\": target directory (default: \"./tmp\""
+  echo "  -s | --source-dir=\"SOURCE_DIR\": source directory (default: \"~/.repositoryfiles\""
+  echo "  -d | --target-dir=\"TARGET_DIR\": target directory (default: \"./tmp\""
   echo "  -e | --exclude-patterns: exclude patterns"
   echo "  (default: [\"scripts/copy-repositoryfiles-to-dir.sh\", \"README.md\"])"
 }
@@ -63,10 +65,21 @@ for i in "${!ARGS[@]}"; do
     --sudo-symlink-to-bin)
       sudo ln -sfnv "$(realpath "${BASH_SOURCE[*]}")" /usr/local/bin/repositoryfiles
       ;;
+    --source-dir=*)
+      SOURCE_DIR="${FLAG#*=}"
+      ;;
+    -s)
+      INDEX_TO_SKIP="$((i + 1))"
+      ARGS_LENGTH="${#ARGS[@]}"
+      if [ "${INDEX_TO_SKIP}" -lt "${ARGS_LENGTH}" ]; then
+        NEXT_ARG="${ARGS["${INDEX_TO_SKIP}"]}"
+        SOURCE_DIR="${NEXT_ARG}"
+      fi
+      ;;
     --target-dir=*)
       TARGET_DIR="${FLAG#*=}"
       ;;
-    -t)
+    -d)
       INDEX_TO_SKIP="$((i + 1))"
       ARGS_LENGTH="${#ARGS[@]}"
       if [ "${INDEX_TO_SKIP}" -lt "${ARGS_LENGTH}" ]; then
@@ -88,7 +101,25 @@ for i in "${!ARGS[@]}"; do
   esac
 done
 
+if [[ ! -d "${SOURCE_DIR}" ]]; then
+  red_echo "no source dir found."
+  read -rp "clone repo to default location? [y/N]"$'\n> ' UserInput
+  if [[ "${UserInput}" == "y" ]]; then
+    red_echo_eval "https://github.com/kazuki0924/.repositoryfiles ~/.repositoryfiles"
+  fi
+  read -rp "overwrite ${TARGET_DIR}/${FILE}? [y/N]"$'\n> ' UserInput
+fi
+
+if [[ "${SOURCE_DIR}" == "." ]]; then
+  SOURCE_DIR="$(pwd)"
+fi
+
+if [[ "${TARGET_DIR}" == "." ]]; then
+  TARGET_DIR="$(pwd)"
+fi
+
 # find files
+cd "${SOURCE_DIR}"
 mapfile -t REPOSITORY_FILES < <(fd --hidden --type file --strip-cwd-prefix --exclude "${FD_EXCLUDE_PATTERN}" .)
 
 # check if the directory exists
