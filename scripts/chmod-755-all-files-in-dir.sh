@@ -6,4 +6,4 @@ IFS=$'\n\t'
 
 TARGET_DIR="${1:-scripts}"
 
-chmod +x "${TARGET_DIR}"/*.sh
+find "${TARGET_DIR}" -type f -name "*.*" -exec chmod 755 {} \;

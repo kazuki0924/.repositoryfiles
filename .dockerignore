@@ -1,6 +1,3 @@
-ops
-.env
-secrets_*
 tmp/
 
 *.tfplan*
