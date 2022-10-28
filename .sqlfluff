@@ -115,7 +115,7 @@ allow_scalar = False
 
 [sqlfluff:rules:L014]
 # Unquoted identifiers
-extended_capitalisation_policy = lower
+extended_capitalisation_policy = upper
 # Comma separated list of words to ignore for this rule
 ignore_words = None
 ignore_words_regex = None
