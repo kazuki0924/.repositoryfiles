@@ -25,7 +25,7 @@ red_echo_eval() {
 
 # variables
 SOURCE_DIR="${HOME}/.repositoryfiles"
-TARGET_DIR="./tmp"
+TARGET_DIR="$(pwd)/tmp"
 EXCLUDE_PATTERNS=(
   scripts/copy-repositoryfiles-to-dir.sh
   README.md
@@ -47,14 +47,14 @@ usage() {
 
 # parse arguments
 ARGS=("$@")
-if [ ${#ARGS[@]} -eq 0 ]; then
-  usage
-  exit 0
-fi
+#if [[ ${#ARGS[@]} -eq 0 ]]; then
+#  usage
+#  exit 0
+#fi
 INDEX_TO_SKIP=""
 for i in "${!ARGS[@]}"; do
   FLAG="${ARGS["${i}"]}"
-  if [ "${i}" == "${INDEX_TO_SKIP}" ]; then
+  if [[ "${i}" == "${INDEX_TO_SKIP}" ]]; then
     continue
   fi
   case "${FLAG}" in
@@ -71,7 +71,7 @@ for i in "${!ARGS[@]}"; do
     -s)
       INDEX_TO_SKIP="$((i + 1))"
       ARGS_LENGTH="${#ARGS[@]}"
-      if [ "${INDEX_TO_SKIP}" -lt "${ARGS_LENGTH}" ]; then
+      if [[ "${INDEX_TO_SKIP}" -lt "${ARGS_LENGTH}" ]]; then
         NEXT_ARG="${ARGS["${INDEX_TO_SKIP}"]}"
         SOURCE_DIR="${NEXT_ARG}"
       fi
@@ -82,7 +82,7 @@ for i in "${!ARGS[@]}"; do
     -d)
       INDEX_TO_SKIP="$((i + 1))"
       ARGS_LENGTH="${#ARGS[@]}"
-      if [ "${INDEX_TO_SKIP}" -lt "${ARGS_LENGTH}" ]; then
+      if [[ "${INDEX_TO_SKIP}" -lt "${ARGS_LENGTH}" ]]; then
         NEXT_ARG="${ARGS["${INDEX_TO_SKIP}"]}"
         TARGET_DIR="${NEXT_ARG}"
       fi
@@ -93,7 +93,7 @@ for i in "${!ARGS[@]}"; do
     -e)
       INDEX_TO_SKIP="$((i + 1))"
       ARGS_LENGTH="${#ARGS[@]}"
-      if [ "${INDEX_TO_SKIP}" -lt "${ARGS_LENGTH}" ]; then
+      if [[ "${INDEX_TO_SKIP}" -lt "${ARGS_LENGTH}" ]]; then
         NEXT_ARG="${ARGS["${INDEX_TO_SKIP}"]}"
         EXCLUDE_PATTERNS+=("${NEXT_ARG}")
       fi
@@ -101,6 +101,7 @@ for i in "${!ARGS[@]}"; do
   esac
 done
 
+# check if the directory exists
 if [[ ! -d "${SOURCE_DIR}" ]]; then
   red_echo "no source dir found."
   read -rp "clone repo to default location? [y/N]"$'\n> ' UserInput
@@ -108,6 +109,17 @@ if [[ ! -d "${SOURCE_DIR}" ]]; then
     red_echo_eval "https://github.com/kazuki0924/.repositoryfiles ~/.repositoryfiles"
   fi
   read -rp "overwrite ${TARGET_DIR}/${FILE}? [y/N]"$'\n> ' UserInput
+fi
+
+if [[ ! -d "${TARGET_DIR}" ]]; then
+  red_echo "target directory does not exist: ${TARGET_DIR}"
+
+  read -rp "create ${TARGET_DIR}? [y/N]"$'\n> ' UserInput
+  if [[ "${UserInput}" == "y" ]]; then
+    cyan_echo_eval "mkdir -p ${TARGET_DIR}"
+  else
+    exit 1
+  fi
 fi
 
 if [[ "${SOURCE_DIR}" == "." ]]; then
@@ -119,18 +131,14 @@ if [[ "${TARGET_DIR}" == "." ]]; then
 fi
 
 # find files
-cyan_echo "cd ${SOURCE_DIR}"
-cyan_echo "git pull origin main"
+echo "Updating files in ${SOURCE_DIR}..."
+cyan_echo_eval "cd ${SOURCE_DIR}"
+cyan_echo_eval "git pull origin main"
 mapfile -t REPOSITORY_FILES < <(fd --hidden --type file --strip-cwd-prefix --exclude "${FD_EXCLUDE_PATTERN}" .)
-
-# check if the directory exists
-if [[ ! -d "${TARGET_DIR}" ]]; then
-  red_echo "target directory does not exist: ${TARGET_DIR}"
-  exit 1
-fi
 
 # copy files
 for FILE in "${REPOSITORY_FILES[@]}"; do
+  echo "Copying ${FILE}..."
   for PATTERN in "${EXCLUDE_PATTERNS[@]}"; do
     if [[ "${FILE}" =~ ${PATTERN} ]]; then
       red_echo "skipping ${FILE}"
