@@ -87,6 +87,14 @@ repos:
         language: system
         types: [shell]
         stages: [commit, merge-commit, push, manual]
+      - id: chmod-scripts
+        name: chmod-scripts
+        entry: bash
+        pass_filenames: false
+        args: [scripts/chmod-755-all-files-in-dir.sh]
+        language: system
+        types: [shell]
+        stages: [commit, merge-commit, push, manual]
       - id: checkmake
         name: checkmake
         entry: checkmake
