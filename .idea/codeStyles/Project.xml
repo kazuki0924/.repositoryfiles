@@ -1,8 +1,7 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
     <option name="LINE_SEPARATOR" value="&#10;" />
-    <option name="RIGHT_MARGIN" value="128" />
-    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="true" />
+    <option name="RIGHT_MARGIN" value="256" />
     <option name="FORMATTER_TAGS_ENABLED" value="true" />
     <option name="FORMATTER_TAGS_ACCEPT_REGEXP" value="true" />
     <option name="ENABLE_SECOND_REFORMAT" value="true" />
@@ -56,32 +55,27 @@
       <option name="INSERT_CLOSING" value="3" />
       <option name="INSERT_TABLE_EL_LINE" value="1" />
       <option name="INSERT_VALUES_EL_LINE" value="1" />
-      <option name="INSERT_EL_WRAP" value="2" />
+      <option name="INSERT_EL_WRAP" value="1" />
       <option name="INSERT_EL_COMMA" value="2" />
       <option name="INSERT_COLLAPSE_MULTI_ROW_VALUES" value="true" />
       <option name="SET_EL_LINE" value="101" />
-      <option name="SET_EL_WRAP" value="2" />
       <option name="SET_EL_COMMA" value="2" />
       <option name="SET_ALIGN_EQUAL_SIGN" value="false" />
       <option name="WITH_EL_LINE" value="101" />
-      <option name="WITH_EL_WRAP" value="2" />
       <option name="WITH_EL_COMMA" value="2" />
       <option name="SELECT_EL_LINE" value="101" />
-      <option name="SELECT_EL_WRAP" value="2" />
       <option name="SELECT_EL_COMMA" value="2" />
       <option name="SELECT_NEW_LINE_AFTER_ALL_DISTINCT" value="true" />
       <option name="SELECT_USE_AS_WORD" value="1" />
       <option name="SELECT_ALIGN_AS" value="false" />
       <option name="FROM_EL_LINE" value="101" />
-      <option name="FROM_EL_WRAP" value="2" />
       <option name="FROM_EL_COMMA" value="2" />
       <option name="FROM_WRAP_ON" value="true" />
       <option name="FROM_INDENT_JOIN" value="false" />
       <option name="FROM_PLACE_ON" value="11" />
       <option name="WHERE_EL_LINE" value="101" />
-      <option name="WHERE_EL_WRAP" value="2" />
       <option name="ORDER_EL_LINE" value="101" />
-      <option name="ORDER_EL_WRAP" value="2" />
+      <option name="ORDER_EL_WRAP" value="1" />
       <option name="ORDER_EL_COMMA" value="2" />
       <option name="TABLE_OPENING" value="1" />
       <option name="TABLE_CLOSING" value="3" />
@@ -99,12 +93,12 @@
       <option name="VIEW_INDENT_QUERY" value="true" />
       <option name="ROUTINE_ARG_CONTENT" value="2" />
       <option name="ROUTINE_ARG_CLOSING" value="3" />
-      <option name="ROUTINE_ARG_WRAP" value="2" />
+      <option name="ROUTINE_ARG_WRAP" value="1" />
       <option name="ROUTINE_ARG_COMMA" value="2" />
       <option name="SCRIPT_STMT_SEMICOLON_WRAP" value="2" />
       <option name="SCRIPT_STMT_FOLLOWS_BLANK_LINE" value="1" />
       <option name="IMP_COMMON_WRAP_EVERY_STATEMENT" value="true" />
-      <option name="IMP_DECLARE_EL_WRAP" value="2" />
+      <option name="IMP_DECLARE_EL_WRAP" value="1" />
       <option name="IMP_DECLARE_ALIGN_TYPE" value="false" />
       <option name="IMP_DECLARE_ALIGN_EQ" value="false" />
       <option name="IMP_IF_THEN_COLLAPSE" value="false" />
@@ -133,32 +127,27 @@
       <option name="INSERT_CLOSING" value="3" />
       <option name="INSERT_TABLE_EL_LINE" value="1" />
       <option name="INSERT_VALUES_EL_LINE" value="1" />
-      <option name="INSERT_EL_WRAP" value="2" />
+      <option name="INSERT_EL_WRAP" value="1" />
       <option name="INSERT_EL_COMMA" value="2" />
       <option name="INSERT_COLLAPSE_MULTI_ROW_VALUES" value="true" />
       <option name="SET_EL_LINE" value="101" />
-      <option name="SET_EL_WRAP" value="2" />
       <option name="SET_EL_COMMA" value="2" />
       <option name="SET_ALIGN_EQUAL_SIGN" value="false" />
       <option name="WITH_EL_LINE" value="101" />
-      <option name="WITH_EL_WRAP" value="2" />
       <option name="WITH_EL_COMMA" value="2" />
       <option name="SELECT_EL_LINE" value="101" />
-      <option name="SELECT_EL_WRAP" value="2" />
       <option name="SELECT_EL_COMMA" value="2" />
       <option name="SELECT_NEW_LINE_AFTER_ALL_DISTINCT" value="true" />
       <option name="SELECT_USE_AS_WORD" value="1" />
       <option name="SELECT_ALIGN_AS" value="false" />
       <option name="FROM_EL_LINE" value="101" />
-      <option name="FROM_EL_WRAP" value="2" />
       <option name="FROM_EL_COMMA" value="2" />
       <option name="FROM_WRAP_ON" value="true" />
       <option name="FROM_INDENT_JOIN" value="false" />
       <option name="FROM_PLACE_ON" value="11" />
       <option name="WHERE_EL_LINE" value="101" />
-      <option name="WHERE_EL_WRAP" value="2" />
       <option name="ORDER_EL_LINE" value="101" />
-      <option name="ORDER_EL_WRAP" value="2" />
+      <option name="ORDER_EL_WRAP" value="1" />
       <option name="ORDER_EL_COMMA" value="2" />
       <option name="TABLE_OPENING" value="1" />
       <option name="TABLE_CONTENT" value="2" />
@@ -175,17 +164,22 @@
       <option name="POST_OPT_WRAP_1" value="true" />
       <option name="POST_OPT_ALIGN" value="false" />
       <option name="VIEW_INDENT_QUERY" value="true" />
-      <option name="ROUTINE_ARG_CONTENT" value="2" />
       <option name="ROUTINE_ARG_CLOSING" value="3" />
-      <option name="ROUTINE_ARG_WRAP" value="2" />
+      <option name="ROUTINE_ARG_WRAP" value="1" />
       <option name="ROUTINE_ARG_COMMA" value="2" />
+      <option name="ROUTINE_AS_WRAP" value="true" />
+      <option name="ROUTINE_PG_R_QUOTE_WRAP_AFTER" value="true" />
       <option name="SCRIPT_STMT_SEMICOLON_WRAP" value="2" />
       <option name="SCRIPT_STMT_FOLLOWS_BLANK_LINE" value="1" />
       <option name="IMP_COMMON_WRAP_EVERY_STATEMENT" value="true" />
-      <option name="IMP_DECLARE_EL_WRAP" value="2" />
+      <option name="IMP_DECLARE_EL_WRAP" value="1" />
       <option name="IMP_DECLARE_ALIGN_TYPE" value="false" />
       <option name="IMP_DECLARE_ALIGN_EQ" value="false" />
-      <option name="IMP_IF_THEN_COLLAPSE" value="false" />
+      <option name="IMP_IF_THEN_WRAP_THEN" value="true" />
+      <option name="IMP_IF_THEN_INDENT_THEN_ELSE" value="true" />
+      <option name="IMP_IF_THEN_INDENT_END" value="true" />
+      <option name="IMP_LOOP_END_INDENT" value="true" />
+      <option name="IMP_LOOP_COLLAPSE" value="true" />
       <option name="CORTEGE_SPACE_WITHIN_PARENTHESES" value="true" />
       <option name="EXPR_BINARY_OP_ALIGN" value="false" />
       <option name="EXPR_CASE_KEEP_NL_AFTER_THEN" value="true" />
@@ -198,8 +192,11 @@
       <option name="SPACES_WITHIN_OBJECT_LITERAL_BRACES" value="true" />
       <option name="SPACES_WITHIN_IMPORTS" value="true" />
     </TypeScriptCodeStyleSettings>
+    <editorconfig>
+      <option name="ENABLED" value="false" />
+    </editorconfig>
     <codeStyleSettings language="HTML">
-      <option name="SOFT_MARGINS" value="128" />
+      <option name="SOFT_MARGINS" value="80" />
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />
         <option name="CONTINUATION_INDENT_SIZE" value="2" />
@@ -207,7 +204,7 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="JavaScript">
-      <option name="SOFT_MARGINS" value="128" />
+      <option name="SOFT_MARGINS" value="80" />
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />
         <option name="CONTINUATION_INDENT_SIZE" value="2" />
@@ -229,7 +226,7 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="TypeScript">
-      <option name="SOFT_MARGINS" value="128" />
+      <option name="SOFT_MARGINS" value="80" />
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />
         <option name="CONTINUATION_INDENT_SIZE" value="2" />
