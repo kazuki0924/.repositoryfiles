@@ -101,6 +101,7 @@ linters:
     - maligned
     - nosnakecase
     - scopelint
+    - gofumpt # use golines instead
     - gci # use golines instead
 
 linters-settings:
@@ -146,14 +147,6 @@ linters-settings:
       - io/ioutil.ReadFile
       - io.Copy(*bytes.Buffer)
       - io.Copy(os.Stdout)
-  gofumpt:
-    # Module path which contains the source code being formatted.
-    # Default: ""
-    module-path: ""
-
-    # Choose whether to use the extra rules.
-    # Default: false
-    extra-rules: true
   importas:
     # Do not allow unaliased imports of aliased packages.
     # Default: false
