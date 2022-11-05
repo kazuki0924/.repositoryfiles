@@ -101,8 +101,10 @@ linters:
     - maligned
     - nosnakecase
     - scopelint
-    - gofumpt # use golines instead
-    - gci # use golines instead
+    - gofmt
+    - goimports
+    - gofumpt
+    - gci
 
 linters-settings:
   decorder:
@@ -196,4 +198,3 @@ linters-settings:
     # Otherwise, only methods that take `*testing.T`, `*testing.B`, and `testing.TB` as arguments are checked.
     # Default: false
     all: true
-
