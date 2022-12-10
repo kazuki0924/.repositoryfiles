@@ -47,10 +47,10 @@ usage() {
 
 # parse arguments
 ARGS=("$@")
-#if [[ ${#ARGS[@]} -eq 0 ]]; then
-#  usage
-#  exit 0
-#fi
+if [[ ${#ARGS[@]} -eq 0 ]]; then
+  usage
+  exit 0
+fi
 INDEX_TO_SKIP=""
 for i in "${!ARGS[@]}"; do
   FLAG="${ARGS["${i}"]}"
